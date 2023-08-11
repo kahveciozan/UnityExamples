@@ -16,8 +16,6 @@ public class SpawnObjectsAddressables : MonoBehaviour
 {
     [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
 
-    private GameObject spawnedGameObject;
-
     public GameObject obje;
     // Update is called once per frame
     void Update()
@@ -41,16 +39,7 @@ public class SpawnObjectsAddressables : MonoBehaviour
                         Debug.Log("Failed to load!");
                         obje.transform.localScale = Vector3.zero;
                     }
-                };
-
-            
+                }; 
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            assetReferenceGameObject.ReleaseInstance(spawnedGameObject);
-            SceneManager.LoadScene(0);
-        }
-
     }
 }
