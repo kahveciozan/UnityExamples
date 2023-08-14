@@ -37,26 +37,26 @@ public class AddressableDilmer : MonoBehaviour
     void Start()
     {
         // start the loader
-        // TO DO implment it 
-        Debug.Log("Initializing Addressables");
+        Loader.Instance.StartLoader();
+        Debug.Log("Initializing Addressables"); Logger.Instance.LogInfo("Initializing Addressables");
+
         Addressables.InitializeAsync().Completed += AddressableDilmer_Completed;
     }
 
     private void AddressableDilmer_Completed(AsyncOperationHandle<IResourceLocator> obj)
     {
-        Debug.Log("Loading the player armature");
-
+        Debug.Log("Loading the player armature"); Logger.Instance.LogInfo("Loading the player armature");
 
         playerArmatureReference.LoadAssetAsync<GameObject>().Completed += (playerArmatureAsset) =>
         {
             playerArmatureReference.InstantiateAsync().Completed += (playerArmatureGameObject) =>
             {
-                Debug.Log("Intantiating the player controller...");
+                Debug.Log("Intantiating the player controller..."); Logger.Instance.LogInfo("Intantiating the player controller...");
 
                 playerController = playerArmatureGameObject.Result;
                 cinemachineVirtualCamera.Follow = playerController.transform.Find("PlayerCameraRoot");
 
-                Debug.Log("Intantiated the player controller...");
+                Debug.Log("Intantiated the player controller..."); Logger.Instance.LogInfo("Intantiated the player controller...");
             };
 
             
@@ -71,13 +71,13 @@ public class AddressableDilmer : MonoBehaviour
             audioSource.volume = 0.5f;
             audioSource.Play();
 
-            Debug.Log("Loaded the audio clip... ");
+            Debug.Log("Loaded the audio clip... "); Logger.Instance.LogInfo("Loaded the audio clip... ");
 
         };
 
         unityLogoAssetReference.LoadAssetAsync<Texture2D>();
 
-        Debug.Log("Loaded Asset..");
+        Debug.Log("Loaded Asset.."); Logger.Instance.LogInfo("Loaded Asset..");
 
     }
 
@@ -92,19 +92,21 @@ public class AddressableDilmer : MonoBehaviour
             currentColor.a = 1.0f;
             rawImageUnityLogo.color = currentColor;
 
-            Debug.Log("Unity Logo Loaded as an asset");
+            Debug.Log("Unity Logo Loaded as an asset"); Logger.Instance.LogInfo("Unity Logo Loaded as an asset");
 
         }
+
         // Checking for loadind content completion 
-
-        if (playerArmatureReference.Asset != null && musicAssetReference.Asset != null && unityLogoAssetReference.Asset != null)
+        if (playerArmatureReference.Asset != null 
+            && musicAssetReference.Asset != null 
+            && unityLogoAssetReference.Asset != null
+            && Loader.Instance.IsLoading)
         {
-            // TO- DO ýmplement loader
 
-
+            Loader.Instance.StopLoader();
         }
 
-
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             ReloadScene();
@@ -117,6 +119,7 @@ public class AddressableDilmer : MonoBehaviour
         {
             LoadAddressableLevel("Assets/DilmerAddressables/Level2.unity");
         }
+        
     }
 
     public void ReloadScene()
