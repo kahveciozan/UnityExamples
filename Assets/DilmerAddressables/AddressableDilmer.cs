@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -49,13 +50,18 @@ public class AddressableDilmer : MonoBehaviour
 
         playerArmatureReference.LoadAssetAsync<GameObject>().Completed += (playerArmatureAsset) =>
         {
+
             playerArmatureReference.InstantiateAsync().Completed += (playerArmatureGameObject) =>
             {
                 Debug.Log("Intantiating the player controller..."); Logger.Instance.LogInfo("Intantiating the player controller...");
 
+                // Loading Animation                
+
                 playerController = playerArmatureGameObject.Result;
                 cinemachineVirtualCamera.Follow = playerController.transform.Find("PlayerCameraRoot");
 
+                
+                
                 Debug.Log("Intantiated the player controller..."); Logger.Instance.LogInfo("Intantiated the player controller...");
             };
 
@@ -106,20 +112,21 @@ public class AddressableDilmer : MonoBehaviour
             Loader.Instance.StopLoader();
         }
 
-        
-        if (Input.GetKeyDown(KeyCode.A))
+        #region Keyboard Input
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             ReloadScene();
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             LoadAddressableLevel("Assets/DilmerAddressables/Level1.unity");
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             LoadAddressableLevel("Assets/DilmerAddressables/Level2.unity");
         }
-        
+        #endregion
+
     }
 
     public void ReloadScene()
