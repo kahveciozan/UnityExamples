@@ -1,3 +1,4 @@
+using Assets._MyExampleProjects.Coroutines.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,13 +20,27 @@ public class PlayerCoroutines : MonoBehaviour
     private Coroutine coroutine;
 
     [SerializeField]
-    private UnityEvent onEnemyCloseToPlayer;    // An event always starts with the lette "O"
+    private UnityEvent onEnemyCloseToPlayer;                            // An event always starts with the letter "O"
 
-
+    [SerializeField]
+    private UnityEventForEnemyCloseBy onEnemyCloseToPlayerProvideInfo;
     // Start is called before the first frame update
     void Start()
     {
-         coroutine = StartCoroutine(CheckForEnemies());
+        coroutine = StartCoroutine(CheckForEnemies());
+        onEnemyCloseToPlayer.AddListener(() => PlayerIsCloseToEnemy());
+
+        onEnemyCloseToPlayerProvideInfo.AddListener((enemyName, distance) => PlayerIsCloseToEnemy(enemyName,distance));
+    }
+
+    void PlayerIsCloseToEnemy()
+    {
+        Logger.Instance.LogInfo("Enemy is close to the player");
+    }
+
+    void PlayerIsCloseToEnemy(string enemyName, float distanece)
+    {
+        Logger.Instance.LogInfo($"Enemy: {enemyName} " + $"is closed by {distanece}");
     }
 
     IEnumerator CheckForEnemies()
@@ -42,11 +57,12 @@ public class PlayerCoroutines : MonoBehaviour
 
                 if (distance < minDistanceFromEnemy)
                 {
-                    onEnemyCloseToPlayer?.Invoke();                                                       // Nullable value type
+                    onEnemyCloseToPlayer?.Invoke();                                                       // "?" Nullable value type
 
-                    Logger.Instance.LogInfo($"Enemy{e.name} is closed by {distance} ");
+                    onEnemyCloseToPlayerProvideInfo?.Invoke(e.name, distance);
+                    //Logger.Instance.LogInfo($"Enemy{e.name} is closed by {distance} ");
 
-                    StopCoroutine(coroutine);
+                    //StopCoroutine(coroutine);
                 }
             }
 
