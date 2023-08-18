@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCoroutines : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class PlayerCoroutines : MonoBehaviour
     private float minDistanceFromEnemy = 1.0f;
 
     private Coroutine coroutine;
+
+    [SerializeField]
+    private UnityEvent onEnemyCloseToPlayer;    // An event always starts with the lette "O"
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,10 +42,11 @@ public class PlayerCoroutines : MonoBehaviour
 
                 if (distance < minDistanceFromEnemy)
                 {
+                    onEnemyCloseToPlayer?.Invoke();                                                       // Nullable value type
+
                     Logger.Instance.LogInfo($"Enemy{e.name} is closed by {distance} ");
 
                     StopCoroutine(coroutine);
-                    //StopAllCoroutines();
                 }
             }
 
