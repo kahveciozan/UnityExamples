@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is Player Features in Dilmer
 public class VariablesAndInspector : MonoBehaviour
 {
     [Header("Player Dependencies")]
@@ -15,8 +16,7 @@ public class VariablesAndInspector : MonoBehaviour
     [SerializeField]
     private Player player;
 
-
-
+    public string PlayerName { get { return player.FirstName; } }
 
     private void OnEnable()
     {
@@ -50,9 +50,4 @@ public class VariablesAndInspector : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
