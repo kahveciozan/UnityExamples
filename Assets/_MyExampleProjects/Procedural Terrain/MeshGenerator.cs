@@ -13,6 +13,7 @@ public class MeshGenerator : MonoBehaviour
     public int xSize = 20;
     public int zSize = 20;
 
+    /*
     public int textureWidth = 1024;
     public int textureHeight = 1024;
 
@@ -25,7 +26,7 @@ public class MeshGenerator : MonoBehaviour
 
     public float noise03Scale = 6f;
     public float noise03Amp = 6f;
-
+    */
     public Gradient gradient;
 
     private float minTerrainHeight;
