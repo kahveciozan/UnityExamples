@@ -29,10 +29,9 @@ public class PlayerCoroutines : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coroutine = StartCoroutine(CheckForEnemies());
+        coroutine = StartCoroutine(CheckForEnemies());                      // Start corotine
 
         onEnemyCloseToPlayer.AddListener(() => PlayerIsCloseToEnemy());
-
         onEnemyCloseToPlayerProvideInfo.AddListener((enemyName, distance) => PlayerIsCloseToEnemy(enemyName,distance));
     }
 
@@ -71,7 +70,7 @@ public class PlayerCoroutines : MonoBehaviour
 
                 if (distance < minDistanceFromEnemy)
                 {
-                    onEnemyCloseToPlayer?.Invoke();                                                       // "?" Nullable value type
+                    onEnemyCloseToPlayer?.Invoke();     // We arrange the where the events active                                                    // "?" Nullable value type
 
                     onEnemyCloseToPlayerProvideInfo?.Invoke(e.name, distance);
                     //Logger.Instance.LogInfo($"Enemy{e.name} is closed by {distance} ");
