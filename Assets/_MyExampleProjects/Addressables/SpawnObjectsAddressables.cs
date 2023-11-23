@@ -14,32 +14,163 @@ public class AssetReferenceAudioClip : AssetReferenceT<AudioClip>
 
 public class SpawnObjectsAddressables : MonoBehaviour
 {
-    [SerializeField] private AssetReferenceGameObject assetReferenceGameObject;
+
 
     public GameObject obje;
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Build Path" + UnityEngine.AddressableAssets.Addressables.BuildPath);
-        Debug.Log("Runtime Path" + UnityEngine.AddressableAssets.Addressables.RuntimePath);
+        //Debug.Log("Build Path" + UnityEngine.AddressableAssets.Addressables.BuildPath);
+        //Debug.Log("Runtime Path" + UnityEngine.AddressableAssets.Addressables.RuntimePath);
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-           
-            // This function is a generic so that means that we are going to return some type. For this time let's make it as a gameobject
-            assetReferenceGameObject.LoadAssetAsync<GameObject>().Completed += 
-                (asyncOperationHandle) =>
-                {
-                    if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
-                    {
-                        Instantiate(asyncOperationHandle.Result);
-                    }
-                    else
-                    {
-                        Debug.Log("Failed to load!");
-                        obje.transform.localScale = Vector3.zero;
-                    }
-                }; 
+            Method1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Method2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Method3();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Method4();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Method5();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Method6_1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Method6_2();
         }
     }
+
+    #region Method1
+    private void Method1()
+    {
+        AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>("Assets/_MyExampleProjects/Addressables/Environment_Prefab.prefab");
+        asyncOperationHandle.Completed += AsyncOperationHandle_Completed;
+    }
+
+    private void AsyncOperationHandle_Completed(AsyncOperationHandle<GameObject> asyncOperationHandle)
+    {
+        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Instantiate(asyncOperationHandle.Result);
+        }
+        else
+        {
+            Debug.Log("Yuklenirken bir hata olustu");
+        }
+    }
+
+    #endregion
+
+    #region Method2
+    private void Method2()
+    {
+        Addressables.LoadAssetAsync<GameObject>("Assets/_MyExampleProjects/Addressables/Environment_Small.prefab").Completed += (asyncOperationHandle) =>
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                Instantiate(asyncOperationHandle.Result);
+            }
+            else
+            {
+                Debug.Log("Yuklenirken bir hata olustu");
+            }
+        };
+    }
+
+    #endregion
+
+    #region Method3
+    [SerializeField] private AssetReference assetReferenceEnvironmentSmall2;
+
+    private void Method3()
+    {
+        assetReferenceEnvironmentSmall2.LoadAssetAsync<GameObject>().Completed += (asyncOperationHandle) =>
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                Instantiate(asyncOperationHandle.Result);
+            }
+            else
+            {
+                Debug.Log("Yuklenirken bir hata olustu");
+            }
+        };
+    }
+    #endregion
+
+    #region Method4
+    [SerializeField] AssetLabelReference assetLabelReferenceSimple;
+    private void Method4()
+    {
+        Addressables.LoadAssetAsync<GameObject>(assetLabelReferenceSimple).Completed += (asyncOperationHandle) =>
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                Instantiate(asyncOperationHandle.Result);
+            }
+            else
+            {
+                Debug.Log("Yuklenirken bir hata olustu");
+            }
+        };
+
+    }
+    #endregion
+
+    #region Method5
+    [SerializeField] AssetLabelReference assetLabelReferenceMultiple;       // Folder addressables'lari da label'lar ile yapmak mantikli
+    private void Method5()
+    {
+        Addressables.LoadAssetsAsync<GameObject>(assetLabelReferenceMultiple, obj =>
+        {
+            Instantiate(obj);
+            Debug.Log(obj.name);
+        });
+
+    }
+    #endregion
+
+    #region Method6
+    [Header("SPECIFIC TYPES")]
+    [SerializeField] AssetReferenceGameObject assetReferenceGameObject;
+
+    private GameObject spawnedGameObject;
+    private void Method6_1()
+    {
+        if (spawnedGameObject == null)
+        {
+            assetReferenceGameObject.InstantiateAsync().Completed += (asyncOperation) => spawnedGameObject = asyncOperation.Result;
+        }
+    }
+
+    private void Method6_2()
+    {
+        if(spawnedGameObject != null)
+        {
+            assetReferenceGameObject.ReleaseInstance(spawnedGameObject);
+        }
+    }
+    #endregion
+
+
+
 }

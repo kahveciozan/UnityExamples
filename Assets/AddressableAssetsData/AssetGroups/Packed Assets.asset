@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Packed Assets
+  m_EditorClassIdentifier: 
+  m_GroupName: Packed Assets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 02d2b76b62fb3734c8d79a13c270d940
+  m_SerializeEntries:
+  - m_GUID: f1596bbb71bb72544b02d269988d7c91
+    m_Address: Assets/_MyExampleProjects/Addressables/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprites
+  - m_GUID: 3e72ab4f933ced24aa098b8444c76298
+    m_Address: Assets/_MyExampleProjects/Addressables/Environment_Prefab.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - environment
+  - m_GUID: af26878e278a70d4cac36c37f17bffbf
+    m_Address: Assets/_MyExampleProjects/Addressables/Environment_Small.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - environment
+  - m_GUID: c27f80602e193484d95c489c41ec92ce
+    m_Address: Assets/_MyExampleProjects/Addressables/Environment_Small2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - environment
+  - m_GUID: 71ff2764ba4ca8c4184634f0a7bc79e8
+    m_Address: Assets/_MyExampleProjects/Addressables/FairyDance.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d674956a9d6ad64bad7b36371c7e038
+    m_Address: Assets/_MyExampleProjects/Addressables/Tunnel_Prefab.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bfd0e2cc7c835844eb3fef2c6f0f7fba
+    m_Address: Assets/_MyExampleProjects/Addressables/Sprites/planet_24.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprites
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 01a310b86bc82564bb49d82f497ec7e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 376c06d1ce0a08743a0c6cc0f180363b, type: 2}
+    - {fileID: 11400000, guid: 349957a6afb25894991c395f5f5ab0fc, type: 2}
