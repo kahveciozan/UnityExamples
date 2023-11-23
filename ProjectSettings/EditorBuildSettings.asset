@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_MyExampleProjects/Addressables/AddressablesScenes.unity
+    guid: 8a99f9fed6898f043b8b15bcd4301ab3
+  - enabled: 0
     path: Assets/_MyExampleProjects/DilmerAddressables/PlaygroundDilmer.unity
     guid: b89eece55070ec3408f87f5086255cf6
   m_configObjects:

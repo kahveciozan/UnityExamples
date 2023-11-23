@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -83,7 +82,6 @@ public class TestinInputSystem : MonoBehaviour
     public void Submit(InputAction.CallbackContext context)
     {
         Debug.Log("Submit " + context);
-
     }
 
 }

@@ -14,14 +14,10 @@ public class AssetReferenceAudioClip : AssetReferenceT<AudioClip>
 
 public class SpawnObjectsAddressables : MonoBehaviour
 {
-
-
-    public GameObject obje;
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Build Path" + UnityEngine.AddressableAssets.Addressables.BuildPath);
-        //Debug.Log("Runtime Path" + UnityEngine.AddressableAssets.Addressables.RuntimePath);
+        Debug.Log("Build Path" + Addressables.BuildPath);
+        Debug.Log("Runtime Path" + Addressables.RuntimePath);
 
         if (Input.GetKeyDown(KeyCode.T))
         {

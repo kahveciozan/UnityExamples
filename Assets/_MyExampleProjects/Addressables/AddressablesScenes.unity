@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 90713366}
   - component: {fileID: 90713365}
   m_Layer: 0
-  m_Name: SpawnObjectAddressables
+  m_Name: SpawnObjectAddressablesLocal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb45a6285849842a18f65f5b209e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obje: {fileID: 0}
   assetReferenceEnvironmentSmall2:
     m_AssetGUID: c27f80602e193484d95c489c41ec92ce
     m_SubObjectName: 
@@ -164,11 +163,6 @@ MonoBehaviour:
     m_LabelString: environment
   assetReferenceGameObject:
     m_AssetGUID: 3d674956a9d6ad64bad7b36371c7e038
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  assetReferenceAudioClip:
-    m_AssetGUID: 71ff2764ba4ca8c4184634f0a7bc79e8
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
