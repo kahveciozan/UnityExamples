@@ -12,7 +12,7 @@ public class TestJson : MonoBehaviour
         //StartCoroutine(StartTest());
         //StartCoroutine(ArraysWithLINQ());
         //StartCoroutine(Deserialize());
-        Serialize();
+        StartCoroutine(Serialize());
     }
 
 
@@ -100,18 +100,33 @@ public class TestJson : MonoBehaviour
 
 
 
-    private void Serialize()
+    IEnumerator  Serialize()
     {
         Todo todo = new Todo()
         {
             userId = 14,
             id = 55,
-            title = "Dünyanın en biliçsiz adamı",
+            title = "Dünyanın en bilinçsiz adamı",
             completed = true
         };
 
-
+        string jsonString = JsonConvert.SerializeObject(todo);
         Debug.Log(JsonConvert.SerializeObject(todo));   // json formatında stringe dönüştürdük
+
+
+        using (UnityWebRequest request = UnityWebRequest.Post("https://postman-echo.com/post?test1=post+test", jsonString))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("BASARILI POST" + request.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log("BASARISIZ POST" + request.error);
+            }
+        }
     }
 
     public class Todo
