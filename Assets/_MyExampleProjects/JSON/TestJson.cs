@@ -114,7 +114,7 @@ public class TestJson : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(todo));   // json formatında stringe dönüştürdük
 
 
-        using (UnityWebRequest request = UnityWebRequest.Post("https://postman-echo.com/post?test1=post+test", jsonString))
+        using (UnityWebRequest request = UnityWebRequest.PostWwwForm("https://postman-echo.com/post?test1=post+test", jsonString))
         {
             yield return request.SendWebRequest();
 

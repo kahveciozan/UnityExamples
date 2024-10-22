@@ -12,7 +12,7 @@ public class WebRequest2 : MonoBehaviour
 
     void Start()
     {
-        string url = "http://google.com";
+        string url = "https://yapayzekaveteknolojiakademisi.com/";
         Get(url, (string error) =>
         {
             //Error
@@ -28,8 +28,6 @@ public class WebRequest2 : MonoBehaviour
 
     }
 
-
-
     private void Get(string url, Action<string> onError, Action<string> onSuccess)
     {
         StartCoroutine(GetRoutine(url, onError, onSuccess));
@@ -42,7 +40,7 @@ public class WebRequest2 : MonoBehaviour
         {
             yield return request.SendWebRequest();
 
-            if (request.isNetworkError || request.isHttpError)
+            if (request.result != UnityWebRequest.Result.Success)
             {
                 onError(request.error);
             }

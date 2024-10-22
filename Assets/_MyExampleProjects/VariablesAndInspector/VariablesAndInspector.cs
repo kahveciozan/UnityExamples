@@ -6,13 +6,12 @@ using UnityEngine;
 // This class is Player Features in Dilmer
 public class VariablesAndInspector : MonoBehaviour
 {
-    [Header("Player Dependencies")]
+    [Header("PLAYER DEPENDENCIES")]
     [SerializeField]
     private GameObject playerPrefab;
 
     [Space]
-    [Header("Player Information")]
-
+    [Header("PLAYER INFORMATIONS")]
     [SerializeField]
     private Player player;
 

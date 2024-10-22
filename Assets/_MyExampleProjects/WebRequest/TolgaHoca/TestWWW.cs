@@ -74,7 +74,7 @@ public class TestWWW : MonoBehaviour
         //form.AddField("test1", "hello");
         //form.AddField("test2", "world");
 
-        using (UnityWebRequest request = UnityWebRequest.Post("https://postman-echo.com/post?test1=post+test", "Akdeniz ikliminde kışlar serin ve yağışlıdır"))
+        using (UnityWebRequest request = UnityWebRequest.PostWwwForm("https://postman-echo.com/post?test1=post+test", "Akdeniz ikliminde kışlar serin ve yağışlıdır"))
         {
             yield return request.SendWebRequest();
 
@@ -92,7 +92,7 @@ public class TestWWW : MonoBehaviour
     IEnumerator TestUploadFile()
     {
 
-        using (UnityWebRequest request = UnityWebRequest.Post("https://postman-echo.com/post?test3=file+upload+test", "formData=Akdeniz ikliminde kışlar serin ve yağışlıdır"))
+        using (UnityWebRequest request = UnityWebRequest.PostWwwForm("https://postman-echo.com/post?test3=file+upload+test", "formData=Akdeniz ikliminde kışlar serin ve yağışlıdır"))
         {
 
             UploadHandler uploadHandler = new UploadHandlerFile("C:/Users/ozan/Downloads/Instructions.csv");

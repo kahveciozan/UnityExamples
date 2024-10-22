@@ -69,7 +69,7 @@ public static class WebRequests {
     }
 
     private static IEnumerator GetCoroutinePost(string url, string postData, Action<string> onError, Action<string> onSuccess) {
-        using (UnityWebRequest unityWebRequest = UnityWebRequest.Post(url, postData)) {
+        using (UnityWebRequest unityWebRequest = UnityWebRequest.PostWwwForm(url, postData)) {
             yield return unityWebRequest.SendWebRequest();
 
             if (unityWebRequest.result == UnityWebRequest.Result.ConnectionError ||
