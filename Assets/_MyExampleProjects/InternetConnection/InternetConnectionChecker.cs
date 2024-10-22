@@ -14,12 +14,14 @@ public class InternetConnectionChecker : MonoBehaviour
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             Debug.Log("No internet connection.");
-            // Display a message to the user
         }
-        else
+        else if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
         {
-            Debug.Log("Internet connection available.");
-            // Continue normal operation
+            Debug.Log("Connected via mobile data.");
+        }
+        else if (Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork)
+        {
+            Debug.Log("Connected via WiFi.");
         }
     }
 }
